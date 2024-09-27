@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New about</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <nav class="footer_nav">
+        <a href="{% url 'home_page' %}" class="logo_url">
+            <img class="logo_img" src="{% static 'img/logo.png' %}" alt="">
+        </a>
+
+        <ul class="urls_ul">
+            <li><a href="{% url 'news_1' %}">News1</a></li>
+            <li><a href="{% url 'news_2' %}">News2</a></li>
+            <li><a href="{% url 'news_3' %}">News3</a></li>
+            <li><a href="{% url 'news_4' %}">News4</a></li>
+        </ul>
+
+        <select id="pageSelect" onchange="redirectToPage()" class="lang_buttons">
+            <option value="{% url 'home_page' %}">English</option>
+            <option value="#">O'zbekcha</option>
+        </select>
+
+    </nav>
+
+    <main>
+        <div class="section5">
+            <h2 class="about_h2">{{new.title}}</h2>
+            <div class="media">
+                <img class="about_img" src="{{new.photo.url}}" alt="">
+                <video class="about_video" src="{{new.video.url}}" controls muted autoplay loop></video>
+            </div>
+            <div class="category_div">
+                <h4>{{new.category}}</h4>
+                <h4>{{new.created_at}}</h4>
+            </div>
+            <h3 class="about_h3">{{new.content}}</h3>
+        </div>
+    </main>
+
+    <nav class="header_nav">
+        <a href="{% url 'home_page' %}" class="logo_url">
+            <img class="logo_img" src="{% static 'img/logo.png' %}" alt="">
+        </a>
+
+        <ul class="urls_ul">
+            <li><a href="{% url 'news_1' %}">News1</a></li>
+            <li><a href="{% url 'news_2' %}">News2</a></li>
+            <li><a href="{% url 'news_3' %}">News3</a></li>
+            <li><a href="{% url 'news_4' %}">News4</a></li>
+        </ul>
+
+        <div class="icons">
+            <a href="https://web.telegram.org/" target="_blank">
+                <i class="fa-brands fa-telegram icon"></i>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank">
+                <i class="fa-brands fa-facebook icon"></i>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank">
+                <i class="fa-brands fa-instagram icon"></i>
+            </a>
+        </div>
+
+    </nav>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

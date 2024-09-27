@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <nav class="footer_nav">
+    <a href="{% url 'home_page' %}" class="logo_url">
+      <img class="logo_img" src="{% static 'img/logo.png' %}" alt="">
+    </a>
+
+    <ul class="urls_ul">
+      <li><a href="{% url 'news_1' %}">News1</a></li>
+      <li><a href="{% url 'news_2' %}">News2</a></li>
+      <li><a href="{% url 'news_3' %}">News3</a></li>
+      <li><a href="{% url 'news_4' %}">News4</a></li>
+    </ul>
+
+    <select id="pageSelect" onchange="redirectToPage()" class="lang_buttons">
+      <option value="{% url 'home_page' %}">English</option>
+      <option value="#">O'zbekcha</option>
+    </select>
+
+  </nav>
+
+  <main>
+    <section class="section1">
+      <div class="left">
+        <a href="{% url 'news_about' news1.id %}" class="first_new">
+          <div class="left1">
+            {% block category %}{% endblock %}
+            <h2>{{news1.title}}</h2>
+            <h3>{{news1.content|truncatechars:300}}</h3>
+          </div>
+          <img class="right1" src="{{news1.photo.url}}" alt="">
+        </a>
+        <div class="news1">
+          {% for new in news2 %}
+          <a href="{% url 'news_about' new.id %}" class="news2">
+            <div class="left2">
+              {% block category1 %}{% endblock %}
+              <h2>{{new.title}}</h2>
+              <h3>{{new.content|truncatechars:350}}</h3>
+            </div>
+            <img class="right2" src="{{new.photo.url}}" alt="">
+          </a>
+          <hr class="hr1">
+          {% endfor %}
+        </div>
+      </div>
+      <div class="right">
+        {% for new in news3 %}
+        <a href="{% url 'news_about' new.id %}" class="news3">
+          {% block category2 %}{% endblock %}
+          <h3>{{new.content|truncatechars:300}}</h3>
+        </a>
+        <hr class="hr2">
+        {% endfor %}
+      </div>
+    </section>
+    <section class="section2">
+      {% for new in news4 %}
+      <a href="{% url 'news_about' new.id %}" class="news4">
+        <img src="{{new.photo.url}}" alt="">
+        {% block category3 %}{% endblock %}
+        <h2>{{new.title}}</h2>
+        <h3>{{new.content|truncatechars:150}}</h3>
+      </a>
+      {% endfor %}
+    </section>
+  </main>
+
+  <nav class="header_nav">
+    <a href="{% url 'home_page' %}" class="logo_url">
+      <img class="logo_img" src="{% static 'img/logo.png' %}" alt="">
+    </a>
+
+    <ul class="urls_ul">
+      <li><a href="{% url 'news_1' %}">News1</a></li>
+      <li><a href="{% url 'news_2' %}">News2</a></li>
+      <li><a href="{% url 'news_3' %}">News3</a></li>
+      <li><a href="{% url 'news_4' %}">News4</a></li>
+    </ul>
+
+    <div class="icons">
+      <a href="https://web.telegram.org/" target="_blank">
+        <i class="fa-brands fa-telegram icon"></i>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank">
+        <i class="fa-brands fa-facebook icon"></i>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank">
+        <i class="fa-brands fa-instagram icon"></i>
+      </a>
+    </div>
+
+  </nav>
+
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
